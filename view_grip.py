@@ -131,6 +131,14 @@ if len(driver.window_handles)>1:
 			document.querySelector("input[name='delete']").click()
 		except:
 			pass
+		try:
+			print("before1")
+			time.sleep(5)
+			driver.execute_script("""return document.querySelectorAll("button[type='submit']")[0].click()""")
+			time.sleep(5)
+		except:
+			print("no need to activate worker")
+			pass
 
 		print("before2")
 		driver.save_screenshot("viewgrip.png")
