@@ -147,12 +147,15 @@ if len(driver.window_handles)>1:
 		driver.execute_script("""document.querySelectorAll("span[onclick='javascript:StartWorker();']")[0].click()""")
 		time.sleep(180)
 		driver.switch_to.window(window_after)
+		driver.set_window_size(403,686)
+		time.sleep(2)
 		driver.save_screenshot("viewgrip.png")
 		upload_basic("viewgrip.png",'13ALQG3rJgrQXZxivxKZ_xXED-nInKsnM')
 		if len(driver.window_handles)>2:
 			time.sleep(1300)
 		else:
 			driver.switch_to.window(window_after)
+			driver.set_window_size(403,686)
 			driver.execute_script("""document.querySelectorAll("span[onclick='javascript:StartWorker();']")[0].click()""")
 			time.sleep(180)
 			if len(driver.window_handles)>2:
