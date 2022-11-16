@@ -12,7 +12,7 @@ import subprocess
 from webdriver_manager.chrome import ChromeDriverManager
 from utilities import *
 import regex as re
-from xvfbwrapper import Xvfb
+# from xvfbwrapper import Xvfb
 
 
 
@@ -29,20 +29,20 @@ from xvfbwrapper import Xvfb
 
 
 
-print(subprocess.Popen("yum localinstall google-chrome-stable.rpm",shell=True,stdout=subprocess.PIPE).communicate()[0])
-print(subprocess.Popen("yum -y install xorg-x11-server-Xvfb",shell=True,stdout=subprocess.PIPE).communicate()[0])
-print(subprocess.Popen("whereis xvfb",shell=True,stdout=subprocess.PIPE).communicate()[0])
+# print(subprocess.Popen("yum localinstall google-chrome-stable.rpm",shell=True,stdout=subprocess.PIPE).communicate()[0])
+# print(subprocess.Popen("yum -y install xorg-x11-server-Xvfb",shell=True,stdout=subprocess.PIPE).communicate()[0])
+# print(subprocess.Popen("whereis xvfb",shell=True,stdout=subprocess.PIPE).communicate()[0])
 
-vdisplay = Xvfb()
-vdisplay.start()
+# vdisplay = Xvfb()
+# vdisplay.start()
 chrome_path=r"/usr/bin/google-chrome-stable"
 os.environ['CHROME_PATH']=chrome_path
 binary_path=os.environ.get('CHROME_PATH')
 path=r"chrome/chromedriver"
-# path=r"chrome/chromedriver.exe"
+path=r"chrome/chromedriver.exe"
 os.chmod(path, 0o777)
 options = Options()
-options.binary_location =binary_path
+# options.binary_location =binary_path
 # options.add_argument('--headless')
 options.add_argument('--no-sandbox')
 # options.add_argument("--remote-debugging-port=8080")
@@ -318,18 +318,7 @@ if len(driver3.window_handles)>1:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 time.sleep(60*30)
 
-driver.quit()
-vdisplay.stop()
+# driver.quit()
+# vdisplay.stop()

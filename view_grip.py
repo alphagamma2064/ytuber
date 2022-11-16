@@ -18,7 +18,7 @@ from xvfbwrapper import Xvfb
 print(subprocess.Popen("yum localinstall google-chrome-stable.rpm",shell=True,stdout=subprocess.PIPE).communicate()[0])
 print(subprocess.Popen("yum -y install xorg-x11-server-Xvfb",shell=True,stdout=subprocess.PIPE).communicate()[0])
 print(subprocess.Popen("whereis xvfb",shell=True,stdout=subprocess.PIPE).communicate()[0])
-vdisplay = Xvfb()
+vdisplay = Xvfb(width=1920, height=1080, colordepth=16)
 vdisplay.start()
 chrome_path=r"/usr/bin/google-chrome-stable"
 os.environ['CHROME_PATH']=chrome_path
@@ -89,6 +89,10 @@ time.sleep(5)
 
 print(json.dumps(driver.get_cookies()))
 
+
+time.sleep(30)
+
+
 set_view_grip_cookies(driver)
 # driver.refresh()
 time.sleep(2)
@@ -128,17 +132,10 @@ if len(driver.window_handles)>1:
 			document.querySelector("input[name='delete']").click()
 		except:
 			pass
-		try:
-			print("before1")
-			time.sleep(5)
-			driver.execute_script("""return document.querySelectorAll("button[type='submit']")[0].click()""")
-			time.sleep(5)
-		except:
-			print("no need to activate worker")
-			pass
+
 		print("before2")
 
-		driver.execute_script("""return document.querySelectorAll("span[onclick='javascript:startSurf();ScrolTop();']")[0].click()""")
+		driver.execute_script("""document.querySelectorAll("span[onclick='javascript:StartWorker();']")[0].click()""")
 		time.sleep(180)
 		driver.switch_to.window(window_after)
 		driver.save_screenshot("viewgrip.png")
@@ -147,14 +144,14 @@ if len(driver.window_handles)>1:
 			time.sleep(1300)
 		else:
 			driver.switch_to.window(window_after)
-			driver.execute_script("""return document.querySelectorAll("span[onclick='javascript:startSurf();ScrolTop();']")[0].click()""")
+			driver.execute_script("""document.querySelectorAll("span[onclick='javascript:StartWorker();']")[0].click()""")
 			time.sleep(180)
 			if len(driver.window_handles)>2:
 				time.sleep(1300)
 
 
 		driver.switch_to.window(window_after)
-		driver.execute_script("""return document.querySelectorAll("span[onclick='javascript:startSurf();ScrolTop();']")[0].click()""")
+		driver.execute_script("""document.querySelectorAll("span[onclick='javascript:StartWorker();']")[0].click()""")
 		time.sleep(5)
 		driver.execute_script("""return document.querySelectorAll("a[onclick='clear_session();']")[0].click()""")
 	except Exception as e:
