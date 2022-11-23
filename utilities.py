@@ -86,7 +86,7 @@ def set_view_bot_cookies(driver,vpn_id=2):
 def set_view_grip_cookies(driver,vpn_id=2):
 	print("setting cookies")
 	try:	
-		df= read_sheet(sheet_name="Sheet1")
+		df= read_sheet(sheet_name="Sheet3")
 		# cookies=df[df['vpn_id']==vpn_id].sample(n=1).to_dict(orient='records')[0]['cookies']
 		cookies=json.loads(df.sample(n=1).to_dict(orient='records')[0]['view_grip'])	
 	except Exception as e:
